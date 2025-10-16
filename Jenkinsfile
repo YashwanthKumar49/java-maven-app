@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     tools {
-        maven 'MAVEN_HOME'    // Make sure this matches your Maven tool name in Jenkins
-        jdk 'JAVA_HOME'       // Make sure this matches your JDK tool name in Jenkins
+        maven 'maven-3.8.1'    // Match this with your Maven tool name
+        jdk 'jdk-17'           // Match this with your JDK tool name
     }
 
     environment {
-        SONARQUBE = 'LocalSonar' // Name of your SonarQube server in Jenkins config
+        SONARQUBE = 'LocalSonar'
     }
 
     stages {

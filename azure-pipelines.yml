@@ -1,18 +1,23 @@
 trigger:
-  - master  # or your main branch name
+  - master
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+  - task: UseJavaVersion@1
+    inputs:
+      versionSpec: '17'
+      jdkArchitecture: 'x64'
+
   - checkout: self
 
   - task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'
       goals: 'clean compile'
-      javaHomeOption: 'JDKVersion'
-      jdkVersionOption: '1.21'
+      javaHomeOption: 'Path'
+      jdkDirectory: '/usr/lib/jvm/java-17-openjdk-amd64'
       mavenVersionOption: 'Default'
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
